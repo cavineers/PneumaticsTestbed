@@ -21,12 +21,30 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+public Joystick m_joy = new Joystick(0);
+    public JoystickButton m_aButton = new JoystickButton(m_joy, 1);
+    public JoystickButton m_bButton = new JoystickButton(m_joy, 2);
+    public JoystickButton m_xButton = new JoystickButton(m_joy, 3);
+    public JoystickButton m_yButton = new JoystickButton(m_joy, 4);
+    public JoystickButton m_lBump = new JoystickButton(m_joy, 5);
+    public JoystickButton m_rBump = new JoystickButton(m_joy, 6);
+    public JoystickButton m_leftMenu = new JoystickButton(m_joy, 7);
+    public JoystickButton m_rightMenu = new JoystickButton(m_joy, 8);
+    public JoystickButton m_leftStick = new JoystickButton(m_joy, 9);
+    public JoystickButton m_rightStick = new JoystickButton(m_joy, 10);
+    public POVButton m_povUp = new POVButton(m_joy, 0, 0);
+    public POVButton m_povRight = new POVButton(m_joy, 90, 0);
+    public POVButton m_povDown = new POVButton(m_joy, 180, 0);
+    public POVButton m_povLeft = new POVButton(m_joy, 270, 0);
 
+  
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
   }
+     
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -34,7 +52,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+       this.m_xButton.whenPressed(new InstantCommand());
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
