@@ -5,9 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.TogglePiston;
+import frc.robot.subsystems.Piston;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -18,24 +19,24 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private Piston m_subsystem = new Piston();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final TogglePiston m_autoCommand = new TogglePiston(m_subsystem);
 public Joystick m_joy = new Joystick(0);
     public JoystickButton m_aButton = new JoystickButton(m_joy, 1);
     public JoystickButton m_bButton = new JoystickButton(m_joy, 2);
     public JoystickButton m_xButton = new JoystickButton(m_joy, 3);
-    public JoystickButton m_yButton = new JoystickButton(m_joy, 4);
-    public JoystickButton m_lBump = new JoystickButton(m_joy, 5);
-    public JoystickButton m_rBump = new JoystickButton(m_joy, 6);
-    public JoystickButton m_leftMenu = new JoystickButton(m_joy, 7);
-    public JoystickButton m_rightMenu = new JoystickButton(m_joy, 8);
-    public JoystickButton m_leftStick = new JoystickButton(m_joy, 9);
-    public JoystickButton m_rightStick = new JoystickButton(m_joy, 10);
-    public POVButton m_povUp = new POVButton(m_joy, 0, 0);
-    public POVButton m_povRight = new POVButton(m_joy, 90, 0);
-    public POVButton m_povDown = new POVButton(m_joy, 180, 0);
-    public POVButton m_povLeft = new POVButton(m_joy, 270, 0);
+    // public JoystickButton m_yButton = new JoystickButton(m_joy, 4);
+    // public JoystickButton m_lBump = new JoystickButton(m_joy, 5);
+    // public JoystickButton m_rBump = new JoystickButton(m_joy, 6);
+    // public JoystickButton m_leftMenu = new JoystickButton(m_joy, 7);
+    // public JoystickButton m_rightMenu = new JoystickButton(m_joy, 8);
+    // public JoystickButton m_leftStick = new JoystickButton(m_joy, 9);
+    // public JoystickButton m_rightStick = new JoystickButton(m_joy, 10);
+    // public POVButton m_povUp = new POVButton(m_joy, 0, 0);
+    // public POVButton m_povRight = new POVButton(m_joy, 90, 0);
+    // public POVButton m_povDown = new POVButton(m_joy, 180, 0);
+    // public POVButton m_povLeft = new POVButton(m_joy, 270, 0);
 
   
   
@@ -53,7 +54,7 @@ public Joystick m_joy = new Joystick(0);
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-       this.m_xButton.whenPressed(new InstantCommand());
+       this.m_xButton.whenPressed(this.m_autoCommand);
   }
 
   /**

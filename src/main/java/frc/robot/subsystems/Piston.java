@@ -4,24 +4,45 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Piston extends SubsystemBase {
   /** Creates a new Piston. */
-  private Solenoid solenoid=new Solenoid(0);
+  public enum PistonState {
+    EXTENDED,
+    RETRACTED
+  }
+
+  private DoubleSolenoid sol = 
+    new DoubleSolenoid(0, 1);
+
   public Piston() {
-    
+    this.setPistonState(PistonState.RETRACTED);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void open(){
-    this.solenoid.set(true);
+
+  public void setPistonState(PistonState state) {
+    if (state == PistonState.EXTENDED) {
+      this.sol.set(DoubleSolenoid.Value.kForward);
+    } else {
+      this.sol.set(DoubleSolenoid.Value.kReverse);
+    }
   }
-  public void close(){
-    this.solenoid.set(false);
+
+  /**
+   * get the current piston state.
+   * @return current state
+   */
+  public PistonState getPistonState() {
+    if (sol.get() == DoubleSolenoid.Value.kForward) {
+      return PistonState.EXTENDED;
+    } else {
+      return PistonState.RETRACTED;
+    }
   }
 }
