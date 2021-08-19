@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -15,7 +16,7 @@ public class Piston extends SubsystemBase {
   }
 
   private DoubleSolenoid sol = 
-    new DoubleSolenoid(0, 1);
+    new DoubleSolenoid(Constants.PCMChannelIds.PistonSolenoid1, Constants.PCMChannelIds.PistonSolenoid2);
 
   public Piston() {
     this.setPistonState(PistonState.RETRACTED);
